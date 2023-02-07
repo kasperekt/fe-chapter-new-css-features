@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Margin Trim</title>
+
+    <style>
+      body {
+        font-family: sans-serif;
+        font-size: 24px;
+      }
+
+      .elements-list {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 500px;
+        padding: 8px;
+        background-color: pink;
+        margin-trim: block-end;
+      }
+
+      .element {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: red;
+        margin-left: 12px;
+        margin-bottom: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="elements-list">
+      <div class="element">A</div>
+      <div class="element">B</div>
+      <div class="element">C</div>
+      <div class="element">D</div>
+      <div class="element">E</div>
+      <div class="element">F</div>
+      <div class="element">G</div>
+      <div class="element">H</div>
+      <div class="element">I</div>
+      <div class="element">J</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Nesting</title>
+    <style id="styles">
+      p {
+        & > button {
+          background-color: red;
+        }
+      }
+
+      article {
+        background-color: lightcoral;
+        padding: 1rem;
+
+        & > p {
+          margin: 2rem 0;
+        }
+
+        & > strong {
+          background-color: aqua;
+        }
+      }
+
+      .parent {
+        margin: 1rem 0;
+      }
+
+      .child {
+        color: darkred;
+
+        .parent & {
+          color: white;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      <span
+        >I am a
+        <code>p</code>
+      </span>
+      <button>Click me</button>
+    </p>
+    <div>
+      <span>I am a <code>div</code></span>
+      <button>Click me</button>
+    </div>
+
+    <article>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>Sed suscipit eget augue et tempus.</p>
+      <p>
+        Nullam ac leo id enim dapibus malesuada. Suspendisse
+        <strong>eleifend</strong> justo ut convallis eleifend.
+      </p>
+      <p>Nullam ac leo id enim dapibus malesuada. Suspendisse</p>
+      <strong>Hello</strong>
+    </article>
+
+    <article class="parent">
+      <div class="child">One</div>
+      <div class="child">Two</div>
+      <div class="child">Three</div>
+    </article>
+
+    <article>
+      <div class="child">No parent 1</div>
+      <div class="child">No parent 2</div>
+      <div class="child">No parent 3</div>
+    </article>
+
+    <code><pre id="code"></pre></code>
+
+    <script async>
+      const stylesElement = document.getElementById("styles");
+      const preElement = document.getElementById("code");
+      preElement.innerHTML = stylesElement.innerHTML;
+    </script>
+  </body>
+</html>

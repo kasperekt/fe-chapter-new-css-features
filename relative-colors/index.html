@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relative Colours</title>
+    <style id="styles">
+      :root {
+        --container-color: pink;
+      }
+
+      .container {
+        background-color: var(--container-color);
+        padding: 2rem;
+      }
+
+      .button {
+        padding: 9px;
+        border: 0;
+        border-radius: 3px;
+        background-color: hsl(from var(--container-color) h s calc(l - 10%));
+        box-shadow: 0 0 4px rgb(from var(--container-color) r calc(g * 0.4) b);
+        border: 2px solid hsl(from var(--container-color) calc(h + 10deg) s l);
+      }
+
+      .button:active {
+        background-color: hsl(from var(--container-color) h s calc(l - 25%));
+        box-shadow: 0 0 4px rgb(from var(--container-color) r calc(g * 0) b);
+        transform: translateY(1px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button class="button">Relative colours are cool</button>
+    </div>
+  </body>
+</html>

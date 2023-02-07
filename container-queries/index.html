@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Container Queries</title>
+    <style>
+      #size-input {
+        width: 400px;
+      }
+    </style>
+    <style>
+      .element {
+        --element-width: 450px;
+        container-type: inline-size;
+        width: var(--element-width);
+        padding: 12px;
+        border-radius: 3px;
+        background-color: aqua;
+      }
+
+      .element-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        grid-template-areas:
+          "description"
+          "image";
+      }
+
+      .images {
+        grid-area: image;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+
+      .image {
+        display: block;
+        width: 100%;
+      }
+
+      .description {
+        grid-area: description;
+        display: block;
+      }
+
+      @container (min-width: 500px) {
+        .element-content {
+          grid-template-areas: "description image";
+          grid-template-rows: 1fr;
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @container (min-width: 700px) {
+        .images {
+          flex-direction: row;
+        }
+
+        .image {
+          flex: 1;
+          width: auto;
+          object-fit: contain;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <aside class="controls">
+      <label for="size-input">Change size</label>
+      <input
+        id="size-input"
+        type="range"
+        step="10"
+        value="450"
+        min="200"
+        max="1000"
+      />
+      <span id="size-display"></span>
+    </aside>
+
+    <main>
+      <section class="element">
+        <div class="element-content">
+          <div class="description">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p>Sed suscipit eget augue et tempus.</p>
+          </div>
+          <div class="images">
+            <img
+              class="image"
+              src="https://static.wikia.nocookie.net/matrix/images/c/c4/Neo%27s_bullet_time.JPG/revision/latest/scale-to-width-down/270?cb=20060716033346"
+            />
+            <img
+              class="image"
+              src="https://static.wikia.nocookie.net/matrix/images/c/c4/Neo%27s_bullet_time.JPG/revision/latest/scale-to-width-down/270?cb=20060716033346"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <h2>
+      <a
+        href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries"
+        target="_blank"
+        >More info</a
+      >
+    </h2>
+
+    <script>
+      const sizeInput = document.getElementById("size-input");
+      const sizeDisplay = document.getElementById("size-display");
+      const element = document.querySelector(".element");
+
+      function updateDisplay(size) {
+        sizeDisplay.innerText = `${size}px`;
+      }
+
+      sizeInput.addEventListener("input", (event) => {
+        updateDisplay(event.currentTarget.value);
+        element.style.setProperty(
+          "--element-width",
+          `${event.currentTarget.value}px`
+        );
+      });
+
+      updateDisplay(sizeInput.value);
+    </script>
+  </body>
+</html>
